@@ -1,0 +1,42 @@
+*{
+
+    margin : 0;
+    padding: 0;
+    font-family: 'poppins','sans-serif';
+    box-sizing: border-box;
+}
+
+.container{
+    width :100vw;
+    height:100vh;
+    background-image: url(background.png);
+    background-size: cover;
+    background-position: center;
+    padding : 0 8%;
+
+}
+.logo{
+    width: 120px;
+    padding :20px 0;
+    cursor : pointer;  
+
+}
+
+.content{
+    top :50%;
+    position : absolute;
+    transform : translateY(-50%);
+    color : #fff;
+    font-size : 20px;
+}
+.content h1{
+    font-size :64px;
+    font-weight :600;
+}
+.content h1 span{
+    color : #ff375f;
+}
+.content button{
+    background-color :transparent;
+
+}
