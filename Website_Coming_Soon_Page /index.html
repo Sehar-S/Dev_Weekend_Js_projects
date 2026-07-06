@@ -14,19 +14,19 @@
         <h1>We're <span>Launching</span> Soon</h1>
         <div class=launch-time>
             <div>
-                <p> id='days'>00 </p>
+                <p id='days'00> </p>
                 <span> Days </span>
             </div>
               <div>
-                <p> id='hours'>00 </p>
+                <p id='hours'00></p> 
                 <span> Hours </span>
             </div>
               <div>
-                <p> id='minutes'>00 </p>
+                <p id='minutes'00 > </p>
                 <span> Minutes </span>
             </div>
               <div>
-                <p> id='seconds'>00 </p>
+                <p id='seconds'00 ></p> </p>
                 <span> Seconds </span>
             </div>
      
@@ -52,6 +52,14 @@
         document.getElementById("hours").innerHTML = hours;
         document.getElementById("minutes").innerHTML = minutes;
         document.getElementById("seconds").innerHTML = seconds;
+
+        if (distance < 0){
+            clearInterval(x);
+            document.getElementById("days").innerHTML = "0";
+            document.getElementById("hours").innerHTML = "0";
+            document.getElementById("minutes").innerHTML = "0";
+            document.getElementById("seconds").innerHTML = "0";
+        }
 
     },1000)
 
