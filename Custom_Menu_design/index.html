@@ -10,32 +10,32 @@
     <div class="hero">
         <div class="selector">
             <div id="selectField">
-                <p>Select a social media platform:</p>
-                <img src="SelectMenu_Img/arrow.png" alt="Arrow">
+                <p id="selectText">Select a social media platform</p>
+                <img src="SelectMenu_Img/arrow.png" alt="Arrow" id="arrowIcone">
             </div>
 
-            <ul id="list">
-                <li class="optiona">
+            <ul id="list" class="hide">
+                <li class="options">
                     <img src="SelectMenu_Img/facebook.png">
                     <p> Facebook</p>
                 </li>
-                <li class="optiona">
+                <li class="options">
                     <img src="SelectMenu_Img/instagram.png">
                     <p> Instagram</p>
                 </li>
-                <li class="optiona">
+                <li class="options">
                     <img src="SelectMenu_Img/pinterest.png">
                     <p> Pinterest</p>
                 </li>
-                <li class="optiona">
+                <li class="options">
                     <img src="SelectMenu_Img/twitter.png">
                     <p> Twitter</p>
                 </li>
-                <li class="optiona">
+                <li class="options">
                     <img src="SelectMenu_Img/whatsapp.png">
                     <p> Whatsapp</p>
                 </li>
-                <li class="optiona">
+                <li class="options">
                     <img src="SelectMenu_Img/youtube.png">
                     <p> youtube</p>
                 </li>
@@ -43,5 +43,37 @@
             </ul>
         </div>
     </div>
+    <script>
+
+     let selectField = document.getElementById("selectField");
+     let selectText = document.getElementById("selectText");
+     let options = document.getElementsByClassName("options")
+     let list = document.getElementById("list");
+     let  arrowIcone = document.getElementById("arrowIcone");
+
+     selectField.onclick=function(){
+        list.classList.toggle("hide")
+        arrowIcone.classList.toggle("rotate");
+
+     }
+    
+     for(option of options){
+         option.onclick =function(){
+            selectText.innerHTML= this.textContent;
+            list.classList.toggle("hide")
+            arrowIcone.classList.toggle("rotate");
+
+         } 
+     }
+
+
+
+    </script>
+
+
+
+
+
+
 </body>
 </html>
