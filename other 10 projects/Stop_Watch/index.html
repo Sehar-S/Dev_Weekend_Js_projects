@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stopwatch</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Stopwatch</h2>
+
+  <div class="time" id="time">00:00:00</div>
+
+  <div class="buttons">
+    <button id="startBtn">Start</button>
+    <button id="pauseBtn">Pause</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+</div>
+
+<script>
+const timeEl = document.getElementById("time");
+const startBtn = document.getElementById("startBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+let elapsed = 0;
+let timerId = null;
+
+function format(num) {
+  return String(num).padStart(2, "0");
+}
+
+function updateDisplay() {
+  const hours = Math.floor(elapsed / 3600);
+  const minutes = Math.floor((elapsed % 3600) / 60);
+  const seconds = elapsed % 60;
+  timeEl.textContent = `${format(hours)}:${format(minutes)}:${format(seconds)}`;
+}
+
+startBtn.addEventListener("click", () => {
+  if (timerId) return;
+
+  timerId = setInterval(() => {
+    elapsed++;
+    updateDisplay();
+  }, 1000);
+});
+
+pauseBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  timerId = null;
+});
+
+resetBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  timerId = null;
+  elapsed = 0;
+  updateDisplay();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(160deg, #0b1120 0%, #111a30 50%, #0d1526 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.card {
+  background: #131c33;
+  padding: 36px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 24px;
+  color: #f1f5f9;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.time {
+  font-size: 46px;
+  font-weight: 700;
+  color: #4f9bff;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 20px rgba(79, 155, 255, 0.35);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+#startBtn { background: linear-gradient(135deg, #4f9bff, #2a6fe0); }
+#pauseBtn { background: rgb(16, 12, 1); color: #b7c0d8; }
+#resetBtn { background: rgb(55, 15, 15); color: #f45b69; }
