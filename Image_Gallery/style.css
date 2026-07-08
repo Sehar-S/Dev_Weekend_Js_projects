@@ -21,7 +21,7 @@ body{
     grid-template-columns: auto ,auto,auto;
     grid-gap: 20px;
     padding : 10px;
-     display :flex;
+    display :flex;
     align-items: center;
     justify-content: center;
     flex : none;
@@ -41,7 +41,7 @@ body{
     justify-content : center;
     margin :10% auto;
 }
-#backBtn , #Image1Btn{
+#backBtn , #nextBtn{
     width :50px;
     cursor: pointer;
     margin :40px;
