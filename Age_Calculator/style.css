@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(20, 40, 100, 0.12);
+  width: 100%;
+  max-width: 400px;
+  border-top: 4px solid #2255d6;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  color: #16233f;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7690;
+  font-size: 14px;
+  margin: 6px 0 26px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #16233f;
+  font-size: 13px;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d7dce8;
+  background: #f8f9fc;
+  color: #16233f;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 18px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="date"]:focus {
+  border-color: #2255d6;
+  box-shadow: 0 0 0 3px rgba(34, 85, 214, 0.15);
+}
+
+#calcBtn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #e0293e, #2255d6);
+  color: white;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+#calcBtn:hover {
+  opacity: 0.92;
+}
+
+#calcBtn:active {
+  transform: scale(0.98);
+}
+
+.result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.result-box {
+  background: #f8f9fc;
+  border: 1px solid #e7eaf3;
+  border-radius: 12px;
+  padding: 14px 6px;
+  text-align: center;
+}
+
+.result-box:nth-child(1) {
+  border-bottom: 3px solid #e0293e;
+}
+
+.result-box:nth-child(2) {
+  border-bottom: 3px solid #16233f;
+}
+
+.result-box:nth-child(3) {
+  border-bottom: 3px solid #2255d6;
+}
+
+.number {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #16233f;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  color: #6b7690;
+  margin-top: 4px;
+}
