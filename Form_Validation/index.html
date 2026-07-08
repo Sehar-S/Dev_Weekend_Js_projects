@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Form Validation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Create Account</h2>
+  <p class="subtitle">Sign up to get started</p>
+
+  <div class="field">
+    <label for="nameInput">Full Name</label>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <div class="error-msg" id="nameError">Name must be at least 3 letters</div>
+  </div>
+
+  <div class="field">
+    <label for="emailInput">Email</label>
+    <input type="text" id="emailInput" placeholder="example@gmail.com">
+    <div class="error-msg" id="emailError">Enter a valid email (example@gmail.com)</div>
+  </div>
+
+  <div class="field">
+    <label for="passwordInput">Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="passwordInput" placeholder="At least 6 characters">
+      <span class="toggle-icon" id="togglePassword">
+        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        </svg>
+      </span>
+    </div>
+    <div class="error-msg" id="passwordError">Password must be at least 6 characters</div>
+  </div>
+
+  <div class="field">
+    <label for="confirmInput">Confirm Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="confirmInput" placeholder="Re-enter your password">
+      <span class="toggle-icon" id="toggleConfirm">
+        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        </svg>
+      </span>
+    </div>
+    <div class="error-msg" id="confirmError">Passwords do not match</div>
+  </div>
+
+  <button id="submitBtn">Submit</button>
+
+  <div class="success-msg" id="successMsg">Account created successfully!</div>
+</div>
+
+<script>
+const nameInput = document.getElementById("nameInput");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
+const confirmInput = document.getElementById("confirmInput");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passwordError = document.getElementById("passwordError");
+const confirmError = document.getElementById("confirmError");
+
+const successMsg = document.getElementById("successMsg");
+const submitBtn = document.getElementById("submitBtn");
+
+const togglePassword = document.getElementById("togglePassword");
+const toggleConfirm = document.getElementById("toggleConfirm");
+
+togglePassword.addEventListener("click", () => {
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  togglePassword.querySelector(".eye-open").style.display = isHidden ? "none" : "block";
+  togglePassword.querySelector(".eye-closed").style.display = isHidden ? "block" : "none";
+});
+
+toggleConfirm.addEventListener("click", () => {
+  const isHidden = confirmInput.type === "password";
+  confirmInput.type = isHidden ? "text" : "password";
+  toggleConfirm.querySelector(".eye-open").style.display = isHidden ? "none" : "block";
+  toggleConfirm.querySelector(".eye-closed").style.display = isHidden ? "block" : "none";
+});
+
+function showError(input, errorBox, message) {
+  input.classList.add("error");
+  errorBox.textContent = message;
+  errorBox.style.display = "block";
+}
+
+function clearError(input, errorBox) {
+  input.classList.remove("error");
+  errorBox.style.display = "none";
+}
+
+function validateName() {
+  const value = nameInput.value.trim();
+
+  if (value.length < 3) {
+    showError(nameInput, nameError, "Name must be at least 3 letters");
+    return false;
+  }
+
+  clearError(nameInput, nameError);
+  return true;
+}
+
+function validateEmail() {
+  const value = emailInput.value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(value)) {
+    showError(emailInput, emailError, "Enter a valid email (example@gmail.com)");
+    return false;
+  }
+
+  clearError(emailInput, emailError);
+  return true;
+}
+
+function validatePassword() {
+  const value = passwordInput.value;
+
+  if (value.length < 6) {
+    showError(passwordInput, passwordError, "Password must be at least 6 characters");
+    return false;
+  }
+
+  clearError(passwordInput, passwordError);
+  return true;
+}
+
+function validateConfirm() {
+  const value = confirmInput.value;
+
+  if (value !== passwordInput.value || value === "") {
+    showError(confirmInput, confirmError, "Passwords do not match");
+    return false;
+  }
+
+  clearError(confirmInput, confirmError);
+  return true;
+}
+
+nameInput.addEventListener("input", validateName);
+emailInput.addEventListener("input", validateEmail);
+passwordInput.addEventListener("input", validatePassword);
+confirmInput.addEventListener("input", validateConfirm);
+
+submitBtn.addEventListener("click", () => {
+  const isNameValid = validateName();
+  const isEmailValid = validateEmail();
+  const isPasswordValid = validatePassword();
+  const isConfirmValid = validateConfirm();
+
+  if (isNameValid && isEmailValid && isPasswordValid && isConfirmValid) {
+    successMsg.style.display = "block";
+  } else {
+    successMsg.style.display = "none";
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(160deg, #0b1120 0%, #111a30 50%, #0d1526 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.card {
+  background: #131c33;
+  padding: 36px 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  width: 100%;
+  max-width: 420px;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  color: #f1f5f9;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  color: #7c8aab;
+  font-size: 14px;
+  margin: 6px 0 26px;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #b7c0d8;
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #2a3655;
+  background: #0e1626;
+  color: #e8edf7;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: #536085;
+}
+
+input:focus {
+  border-color: #4f7cff;
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.2);
+}
+
+input.error {
+  border-color: #f45b69;
+}
+
+input.error:focus {
+  box-shadow: 0 0 0 3px rgba(244, 91, 105, 0.2);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 44px;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #7c8aab;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.toggle-icon:hover {
+  color: #4f7cff;
+}
+
+.error-msg {
+  color: #f45b69;
+  font-size: 12.5px;
+  margin-top: 6px;
+  display: none;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4f7cff, #3a5fe0);
+  color: white;
+  margin-top: 10px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.success-msg {
+  display: none;
+  background: rgba(46, 204, 113, 0.12);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  color: #4ade80;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+}
