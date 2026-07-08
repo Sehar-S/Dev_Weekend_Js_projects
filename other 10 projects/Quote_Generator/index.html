@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quote Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <span class="mark">&#8220;</span>
+  <p class="quote" id="quoteText">Click the button to get inspired.</p>
+  <p class="author" id="quoteAuthor">— Ready when you are</p>
+
+  <div class="buttons">
+    <button id="newBtn">New Quote</button>
+    <button id="copyBtn" title="Copy">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="copied-msg" id="copiedMsg">Copied to clipboard!</div>
+</div>
+
+<script>
+const quotes = [
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+  { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+  { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+  { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+  { text: "Do not wait to strike till the iron is hot, but make it hot by striking.", author: "William B. Sprague" },
+  { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+  { text: "Hardships often prepare ordinary people for an extraordinary destiny.", author: "C.S. Lewis" },
+  { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+  { text: "Act as if what you do makes a difference. It does.", author: "William James" }
+];
+
+const quoteText = document.getElementById("quoteText");
+const quoteAuthor = document.getElementById("quoteAuthor");
+const newBtn = document.getElementById("newBtn");
+const copyBtn = document.getElementById("copyBtn");
+const copiedMsg = document.getElementById("copiedMsg");
+
+function showQuote() {
+  const random = quotes[Math.floor(Math.random() * quotes.length)];
+  quoteText.textContent = random.text;
+  quoteAuthor.textContent = `— ${random.author}`;
+}
+
+newBtn.addEventListener("click", showQuote);
+
+copyBtn.addEventListener("click", () => {
+  const fullQuote = `${quoteText.textContent} ${quoteAuthor.textContent}`;
+  navigator.clipboard.writeText(fullQuote);
+
+  copiedMsg.style.display = "block";
+  setTimeout(() => {
+    copiedMsg.style.display = "none";
+  }, 1500);
+});
+
+showQuote();
+</script>
+</body>
+</html>

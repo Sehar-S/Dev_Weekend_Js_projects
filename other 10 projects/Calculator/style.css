@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at 30% 20%, #16213f 0%, #0a0e1a 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.calculator {
+  background: linear-gradient(160deg, #0d1120 0%, #05070d 100%);
+  padding: 22px;
+  border-radius: 34px;
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(255,255,255,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  width: 100%;
+  max-width: 320px;
+}
+
+.display {
+  padding: 34px 18px 14px;
+  text-align: right;
+  background: radial-gradient(circle at 80% 0%, rgba(79,155,255,0.08), transparent 60%);
+  border-radius: 20px;
+}
+
+.prev {
+  color: #5b6584;
+  font-size: 15px;
+  min-height: 18px;
+  margin-bottom: 6px;
+}
+
+.current {
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 300;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 24px rgba(79, 155, 255, 0.25);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.btn {
+  border: none;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+.num {
+  background: linear-gradient(160deg, #2e3350, #20233a);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.num:hover {
+  filter: brightness(1.25);
+}
+
+.func {
+  background: linear-gradient(160deg, #b9bed4, #9a9fb8);
+  color: #05070d;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.func:hover {
+  filter: brightness(1.08);
+}
+
+.op {
+  background: linear-gradient(160deg, #6badff, #3d7fe6);
+  color: #ffffff;
+  font-size: 26px;
+  box-shadow: 0 4px 14px rgba(79, 155, 255, 0.4);
+}
+
+.op:hover {
+  filter: brightness(1.15);
+}
+
+.equals {
+  background: linear-gradient(160deg, #6badff, #2a6fe0);
+  color: #ffffff;
+  font-size: 24px;
+  box-shadow: 0 6px 18px rgba(79, 155, 255, 0.5);
+}
+
+.equals:hover {
+  filter: brightness(1.15);
+}
+
+.zero {
+  grid-column: span 2;
+  border-radius: 30px;
+  aspect-ratio: unset;
+  text-align: left;
+  padding-left: 28px;
+}
