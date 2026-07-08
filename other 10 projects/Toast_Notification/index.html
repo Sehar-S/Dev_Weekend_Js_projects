@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Toast Notifications</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Toast Notifications</h2>
+  <p class="subtitle">Click a button to trigger a toast</p>
+
+  <div class="buttons">
+    <button class="trigger success" data-type="success">Success</button>
+    <button class="trigger error" data-type="error">Error</button>
+    <button class="trigger warning" data-type="warning">Warning</button>
+    <button class="trigger info" data-type="info">Info</button>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+const triggers = document.querySelectorAll(".trigger");
+const toastContainer = document.getElementById("toastContainer");
+
+const messages = {
+  success: "Action completed successfully!",
+  error: "Something went wrong!",
+  warning: "Please double check your input.",
+  info: "Here is something you should know."
+};
+
+const icons = {
+  success: "✓",
+  error: "✕",
+  warning: "!",
+  info: "i"
+};
+
+function showToast(type) {
+  const toast = document.createElement("div");
+  toast.classList.add("toast", type);
+
+  const icon = document.createElement("span");
+  icon.classList.add("icon");
+  icon.textContent = icons[type];
+
+  const text = document.createElement("span");
+  text.classList.add("text");
+  text.textContent = messages[type];
+
+  const closeBtn = document.createElement("span");
+  closeBtn.classList.add("close");
+  closeBtn.innerHTML = "&times;";
+  closeBtn.addEventListener("click", () => removeToast(toast));
+
+  toast.appendChild(icon);
+  toast.appendChild(text);
+  toast.appendChild(closeBtn);
+  toastContainer.appendChild(toast);
+
+  setTimeout(() => removeToast(toast), 3500);
+}
+
+function removeToast(toast) {
+  toast.classList.add("hide");
+  setTimeout(() => toast.remove(), 300);
+}
+
+triggers.forEach((btn) => {
+  btn.addEventListener("click", () => showToast(btn.dataset.type));
+});
+</script>
+</body>
+</html>

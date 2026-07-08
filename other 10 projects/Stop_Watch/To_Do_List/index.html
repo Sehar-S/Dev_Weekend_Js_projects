@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>To-Do List</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>To-Do List</h2>
+  <p class="subtitle">Stay on top of your tasks</p>
+
+  <div class="input-area">
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <button id="addBtn">Add</button>
+  </div>
+
+  <ul class="task-list" id="taskList"></ul>
+
+  <p class="empty-msg" id="emptyMsg">No tasks yet. Add one above.</p>
+</div>
+
+<script>
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
+const emptyMsg = document.getElementById("emptyMsg");
+
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function renderTasks() {
+  taskList.innerHTML = "";
+  emptyMsg.style.display = tasks.length === 0 ? "block" : "none";
+
+  tasks.forEach((task, index) => {
+    const item = document.createElement("li");
+    item.classList.add("task-item");
+    if (task.done) item.classList.add("done");
+
+    const check = document.createElement("span");
+    check.classList.add("check");
+    check.addEventListener("click", () => {
+      tasks[index].done = !tasks[index].done;
+      saveTasks();
+      renderTasks();
+    });
+
+    const text = document.createElement("span");
+    text.classList.add("text");
+    text.textContent = task.text;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.innerHTML = "&times;";
+    deleteBtn.addEventListener("click", () => {
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks();
+    });
+
+    item.appendChild(check);
+    item.appendChild(text);
+    item.appendChild(deleteBtn);
+    taskList.appendChild(item);
+  });
+}
+
+function addTask() {
+  const value = taskInput.value.trim();
+  if (value === "") return;
+
+  tasks.push({ text: value, done: false });
+  taskInput.value = "";
+
+  saveTasks();
+  renderTasks();
+}
+
+addBtn.addEventListener("click", addTask);
+taskInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") addTask();
+});
+
+renderTasks();
+</script>
+</body>
+</html>
