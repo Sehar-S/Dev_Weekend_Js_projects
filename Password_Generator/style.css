@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(160deg, #0b1120 0%, #111a30 50%, #0d1526 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.card {
+  background: #131c33;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  color: #f1f5f9;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  color: #7c8aab;
+  font-size: 14px;
+  margin: 6px 0 24px;
+}
+
+.output-wrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+#passwordOutput {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #2a3655;
+  background: #0e1626;
+  color: #ff8c42;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  outline: none;
+}
+
+#copyBtn {
+  border: none;
+  background: #1c2947;
+  color: #ff8c42;
+  width: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+#copyBtn:hover {
+  background: #26355c;
+}
+
+.copied-msg {
+  display: none;
+  color: #4ade80;
+  font-size: 12.5px;
+  margin-bottom: 18px;
+}
+
+.field {
+  margin-top: 16px;
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #b7c0d8;
+  font-size: 13px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #ff8c42;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b7c0d8;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  accent-color: #ff8c42;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+button#generateBtn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff8c42, #e0672a);
+  color: white;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+button#generateBtn:hover {
+  opacity: 0.92;
+}
+
+button#generateBtn:active {
+  transform: scale(0.98);
+}

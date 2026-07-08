@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Password Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Password Generator</h2>
+  <p class="subtitle">Create a strong random password</p>
+
+  <div class="output-wrapper">
+    <input type="text" id="passwordOutput" readonly>
+    <button id="copyBtn" title="Copy">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="copied-msg" id="copiedMsg">Copied to clipboard!</div>
+
+  <div class="field">
+    <label for="lengthInput">Length: <span id="lengthValue">12</span></label>
+    <input type="range" id="lengthInput" min="4" max="32" value="12">
+  </div>
+
+  <div class="options">
+    <label class="checkbox-label">
+      <input type="checkbox" id="uppercaseCheck" checked>
+      Uppercase (A-Z)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="lowercaseCheck" checked>
+      Lowercase (a-z)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="numbersCheck" checked>
+      Numbers (0-9)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="symbolsCheck" checked>
+      Symbols (!@#$%)
+    </label>
+  </div>
+
+  <button id="generateBtn">Generate Password</button>
+</div>
+
+<script>
+const passwordOutput = document.getElementById("passwordOutput");
+const copyBtn = document.getElementById("copyBtn");
+const copiedMsg = document.getElementById("copiedMsg");
+
+const lengthInput = document.getElementById("lengthInput");
+const lengthValue = document.getElementById("lengthValue");
+
+const uppercaseCheck = document.getElementById("uppercaseCheck");
+const lowercaseCheck = document.getElementById("lowercaseCheck");
+const numbersCheck = document.getElementById("numbersCheck");
+const symbolsCheck = document.getElementById("symbolsCheck");
+
+const generateBtn = document.getElementById("generateBtn");
+
+const charSets = {
+  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowercase: "abcdefghijklmnopqrstuvwxyz",
+  numbers: "0123456789",
+  symbols: "!@#$%^&*()_+-=[]{}"
+};
+
+lengthInput.addEventListener("input", () => {
+  lengthValue.textContent = lengthInput.value;
+});
+
+function generatePassword() {
+  let charPool = "";
+
+  if (uppercaseCheck.checked) charPool += charSets.uppercase;
+  if (lowercaseCheck.checked) charPool += charSets.lowercase;
+  if (numbersCheck.checked) charPool += charSets.numbers;
+  if (symbolsCheck.checked) charPool += charSets.symbols;
+
+  if (charPool === "") {
+    passwordOutput.value = "Select at least one option";
+    return;
+  }
+
+  const length = parseInt(lengthInput.value);
+  let password = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charPool.length);
+    password += charPool[randomIndex];
+  }
+
+  passwordOutput.value = password;
+}
+
+generateBtn.addEventListener("click", generatePassword);
+
+copyBtn.addEventListener("click", () => {
+  if (!passwordOutput.value || passwordOutput.value === "Select at least one option") {
+    return;
+  }
+
+  navigator.clipboard.writeText(passwordOutput.value);
+
+  copiedMsg.style.display = "block";
+  setTimeout(() => {
+    copiedMsg.style.display = "none";
+  }, 1500);
+});
+
+generatePassword();
+</script>
+</body>
+</html>
