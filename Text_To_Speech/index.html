@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Text to Speech Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>🔊 Text to Speech</h2>
+
+  <textarea id="textInput" placeholder="Type your text here...">Hello! This is a simple text to speech generator.</textarea>
+
+  <label for="voiceSelect">Choose Voice</label>
+  <select id="voiceSelect"></select>
+
+  <label for="rateInput">Speed: <span id="rateValue">1</span></label>
+  <input type="range" id="rateInput" min="0.5" max="2" step="0.1" value="1">
+
+  <label for="pitchInput">Pitch: <span id="pitchValue">1</span></label>
+  <input type="range" id="pitchInput" min="0" max="2" step="0.1" value="1">
+
+  <div class="buttons">
+    <button id="speakBtn">▶ Speak</button>
+    <button id="pauseBtn">⏸ Pause</button>
+    <button id="stopBtn">⏹ Stop</button>
+  </div>
+</div>
+
+<script>
+const synth = window.speechSynthesis;
+
+const textInput = document.getElementById("textInput");
+const voiceSelect = document.getElementById("voiceSelect");
+const rateInput = document.getElementById("rateInput");
+const pitchInput = document.getElementById("pitchInput");
+const rateValue = document.getElementById("rateValue");
+const pitchValue = document.getElementById("pitchValue");
+
+const speakBtn = document.getElementById("speakBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+const stopBtn = document.getElementById("stopBtn");
+
+let voices = [];
+
+function loadVoices() {
+  voices = synth.getVoices();
+  voiceSelect.innerHTML = "";
+
+  voices.forEach((voice, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = `${voice.name} (${voice.lang})`;
+    voiceSelect.appendChild(option);
+  });
+}
+
+synth.onvoiceschanged = loadVoices;
+loadVoices();
+
+rateInput.addEventListener("input", () => {
+  rateValue.textContent = rateInput.value;
+});
+
+pitchInput.addEventListener("input", () => {
+  pitchValue.textContent = pitchInput.value;
+});
+
+speakBtn.addEventListener("click", () => {
+  synth.cancel();
+
+  const text = textInput.value;
+
+  if (text.trim() === "") {
+    alert("Please enter some text first!");
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.voice = voices[voiceSelect.value];
+  utterance.rate = rateInput.value;
+  utterance.pitch = pitchInput.value;
+
+  synth.speak(utterance);
+});
+
+pauseBtn.addEventListener("click", () => {
+  if (synth.speaking && !synth.paused) {
+    synth.pause();
+    pauseBtn.textContent = "▶ Resume";
+  } else if (synth.paused) {
+    synth.resume();
+    pauseBtn.textContent = "⏸ Pause";
+  }
+});
+
+stopBtn.addEventListener("click", () => {
+  synth.cancel();
+  pauseBtn.textContent = "⏸ Pause";
+});
+</script>
+</body>
+</html>
