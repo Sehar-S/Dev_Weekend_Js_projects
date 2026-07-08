@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(160deg, #0b1120 0%, #111a30 50%, #0d1526 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 720px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #f1f5f9;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #7c8aab;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.input-area {
+  background: #131c33;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  margin-bottom: 28px;
+}
+
+.input-area input,
+.input-area textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #2a3655;
+  background: #0e1626;
+  color: #e8edf7;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.input-area textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.input-area input::placeholder,
+.input-area textarea::placeholder {
+  color: #536085;
+}
+
+.input-area input:focus,
+.input-area textarea:focus {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+}
+
+#addBtn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  color: white;
+  margin-bottom: 0;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+#addBtn:hover {
+  opacity: 0.92;
+}
+
+#addBtn:active {
+  transform: scale(0.98);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.note-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.note-card h3 {
+  margin: 0 24px 8px 0;
+  color: #1e2740;
+  font-size: 15px;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.note-card p {
+  margin: 0;
+  color: #4a5372;
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: #e3faf6;
+  color: #2dd4bf;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #b8ede3;
+}
+
+.empty-msg {
+  display: none;
+  text-align: center;
+  color: #536085;
+  font-size: 14px;
+  margin-top: 30px;
+}
