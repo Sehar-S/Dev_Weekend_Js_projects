@@ -1,69 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Coming Soon Page </title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Coming Soon Page</title>
+  <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
-<div class="container">
-    <img src="logo.png" alt="Logo" class="logo">
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo" />
     <div class="content">
-        <p>We are working hard to bring you something amazing!</p>
-        <h1>We're <span>Launching</span> Soon</h1>
-        <div class=launch-time>
-            <div>
-                <p id='days'00> </p>
-                <span> Days </span>
-            </div>
-              <div>
-                <p id='hours'00></p> 
-                <span> Hours </span>
-            </div>
-              <div>
-                <p id='minutes'00 > </p>
-                <span> Minutes </span>
-            </div>
-              <div>
-                <p id='seconds'00 ></p> </p>
-                <span> Seconds </span>
-            </div>
-     
-    
+      <p>We are working hard to bring you something amazing!</p>
+      <h1>We're <span>Launching</span> Soon</h1>
+
+      <div class="launch-time">
+        <div>
+          <p id="days">0</p>
+          <span>Days</span>
         </div>
-        <button type= 'button'> Learn More <img src="triangle.png" alt=""></button>
+        <div>
+          <p id="hours">0</p>
+          <span>Hours</span>
+        </div>
+        <div>
+          <p id="minutes">0</p>
+          <span>Minutes</span>
+        </div>
+        <div>
+          <p id="seconds">0</p>
+          <span>Seconds</span>
+        </div>
+      </div>
+
+      <button type="button">Learn More <img src="triangle.png" alt="" /></button>
     </div>
-    <img src="rocket.png" alt="Rocket" class="rocket">
-</div>
 
-<script>
-    let countDownDate = new Date("Augest 16,2026 00:00:00").getTime();
-    let x = setInterval(function(){
-        let now = new Date().getTime();
-        let distance =countDownDate - now;
+    <img src="rocket.png" alt="Rocket" class="rocket" />
+  </div>
 
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  <script>
+    // target date — fixed spelling of August and spacing
+    const countDownDate = new Date("August 16, 2026 00:00:00").getTime();
 
-        document.getElementById("days").innerHTML = days;
-        document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = minutes;
-        document.getElementById("seconds").innerHTML = seconds;
+    const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
 
-        if (distance < 0){
-            clearInterval(x);
-            document.getElementById("days").innerHTML = "0";
-            document.getElementById("hours").innerHTML = "0";
-            document.getElementById("minutes").innerHTML = "0";
-            document.getElementById("seconds").innerHTML = "0";
-        }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    },1000)
+      document.getElementById("days").innerHTML = days >= 0 ? days : 0;
+      document.getElementById("hours").innerHTML = hours >= 0 ? hours : 0;
+      document.getElementById("minutes").innerHTML = minutes >= 0 ? minutes : 0;
+      document.getElementById("seconds").innerHTML = seconds >= 0 ? seconds : 0;
 
-</script>
-
+      if (distance < 0) {
+        clearInterval(x);
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
