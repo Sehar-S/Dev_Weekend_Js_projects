@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ff9a76 0%, #ff6f91 35%, #a06bd6 75%, #6b5bd6 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 42px 36px;
+  border-radius: 26px;
+  box-shadow: 0 25px 60px rgba(80, 30, 90, 0.35);
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+}
+
+.mark {
+  color: #fff3e6;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.quote {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.5;
+  margin: 10px 0 18px;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.author {
+  color: #fff3e6;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin: 0 0 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#newBtn {
+  border: none;
+  padding: 13px 28px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ffffff;
+  color: #ab4d8f;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: filter 0.15s, transform 0.1s;
+}
+
+#newBtn:hover {
+  filter: brightness(0.97);
+}
+
+#newBtn:active {
+  transform: scale(0.96);
+}
+
+#copyBtn {
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 46px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+#copyBtn:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.copied-msg {
+  display: none;
+  color: #fff3e6;
+  font-weight: 600;
+  font-size: 12.5px;
+  margin-top: 14px;
+}

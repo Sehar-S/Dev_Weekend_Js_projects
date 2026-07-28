@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rock Paper Scissors</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Rock Paper Scissors</h2>
+
+  <div class="scoreboard">
+    <div class="score-box">
+      <span class="score" id="playerScore">0</span>
+      <span class="score-label">You</span>
+    </div>
+    <div class="score-box">
+      <span class="score" id="computerScore">0</span>
+      <span class="score-label">Computer</span>
+    </div>
+  </div>
+
+  <div class="arena">
+    <div class="player-choice" id="playerChoice">❔</div>
+    <span class="vs">VS</span>
+    <div class="player-choice" id="computerChoice">❔</div>
+  </div>
+
+  <p class="result-msg" id="resultMsg">Make your move</p>
+
+  <div class="choices">
+    <button class="choice-btn" data-choice="rock">🪨</button>
+    <button class="choice-btn" data-choice="paper">📄</button>
+    <button class="choice-btn" data-choice="scissors">✂️</button>
+  </div>
+
+  <button id="resetBtn">Reset Score</button>
+</div>
+
+<script>
+const options = ["rock", "paper", "scissors"];
+const emojis = { rock: "🪨", paper: "📄", scissors: "✂️" };
+
+const choiceButtons = document.querySelectorAll(".choice-btn");
+const playerChoiceEl = document.getElementById("playerChoice");
+const computerChoiceEl = document.getElementById("computerChoice");
+const resultMsg = document.getElementById("resultMsg");
+const playerScoreEl = document.getElementById("playerScore");
+const computerScoreEl = document.getElementById("computerScore");
+const resetBtn = document.getElementById("resetBtn");
+
+let playerScore = 0;
+let computerScore = 0;
+
+function getWinner(player, computer) {
+  if (player === computer) return "draw";
+
+  const beats = { rock: "scissors", paper: "rock", scissors: "paper" };
+  return beats[player] === computer ? "player" : "computer";
+}
+
+function play(playerPick) {
+  const computerPick = options[Math.floor(Math.random() * 3)];
+
+  playerChoiceEl.textContent = emojis[playerPick];
+  computerChoiceEl.textContent = emojis[computerPick];
+
+  const winner = getWinner(playerPick, computerPick);
+
+  if (winner === "draw") {
+    resultMsg.textContent = "It's a draw!";
+  } else if (winner === "player") {
+    playerScore++;
+    playerScoreEl.textContent = playerScore;
+    resultMsg.textContent = "You win this round!";
+  } else {
+    computerScore++;
+    computerScoreEl.textContent = computerScore;
+    resultMsg.textContent = "Computer wins this round!";
+  }
+}
+
+choiceButtons.forEach((btn) => {
+  btn.addEventListener("click", () => play(btn.dataset.choice));
+});
+
+resetBtn.addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreEl.textContent = 0;
+  computerScoreEl.textContent = 0;
+  playerChoiceEl.textContent = "❔";
+  computerChoiceEl.textContent = "❔";
+  resultMsg.textContent = "Make your move";
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tech Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <div class="top-bar">
+    <span class="tag">Tech Quiz</span>
+    <span class="counter" id="counter">1 / 8</span>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div id="quizScreen">
+    <h2 class="question" id="question"></h2>
+    <div class="options" id="options"></div>
+    <button id="nextBtn" disabled>Next</button>
+  </div>
+
+  <div id="resultScreen" class="hidden">
+    <h2 class="result-title">Quiz Complete</h2>
+    <div class="result-score" id="resultScore">0 / 8</div>
+    <p class="result-msg" id="resultMsg"></p>
+    <button id="restartBtn">Try Again</button>
+  </div>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "Which language runs in a web browser?",
+    options: ["Java", "C", "Python", "JavaScript"],
+    answer: 3
+  },
+  {
+    q: "What does CSS stand for?",
+    options: ["Central Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Computer Style Sheets"],
+    answer: 1
+  },
+  {
+    q: "Which HTML tag is used to link a CSS file?",
+    options: ["<style>", "<css>", "<link>", "<script>"],
+    answer: 2
+  },
+  {
+    q: "In machine learning, KNN stands for?",
+    options: ["K-Nearest Neighbors", "Key Node Network", "Kernel Neural Net", "K-Node Numbers"],
+    answer: 0
+  },
+  {
+    q: "Which method adds an item to the end of a JS array?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    answer: 0
+  },
+  {
+    q: "What does API stand for?",
+    options: ["Applied Program Interface", "Application Programming Interface", "Automated Program Input", "App Process Integration"],
+    answer: 1
+  },
+  {
+    q: "Which of these is NOT a JavaScript data type?",
+    options: ["String", "Boolean", "Float", "Undefined"],
+    answer: 2
+  },
+  {
+    q: "In React, what is used to manage component state?",
+    options: ["useEffect", "useState", "useMemo", "useRef"],
+    answer: 1
+  }
+];
+
+let currentIndex = 0;
+let score = 0;
+let selectedOption = null;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("nextBtn");
+const counterEl = document.getElementById("counter");
+const progressFill = document.getElementById("progressFill");
+const quizScreen = document.getElementById("quizScreen");
+const resultScreen = document.getElementById("resultScreen");
+const resultScore = document.getElementById("resultScore");
+const resultMsg = document.getElementById("resultMsg");
+const restartBtn = document.getElementById("restartBtn");
+
+function loadQuestion() {
+  const current = questions[currentIndex];
+  questionEl.textContent = current.q;
+  optionsEl.innerHTML = "";
+  selectedOption = null;
+  nextBtn.disabled = true;
+
+  counterEl.textContent = `${currentIndex + 1} / ${questions.length}`;
+  progressFill.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+
+  current.options.forEach((option, index) => {
+    const btn = document.createElement("button");
+    btn.classList.add("option-btn");
+    btn.textContent = option;
+
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".option-btn").forEach((b) => {
+        b.classList.remove("selected");
+      });
+      btn.classList.add("selected");
+      selectedOption = index;
+      nextBtn.disabled = false;
+    });
+
+    optionsEl.appendChild(btn);
+  });
+}
+
+nextBtn.addEventListener("click", () => {
+  if (selectedOption === questions[currentIndex].answer) {
+    score++;
+  }
+
+  currentIndex++;
+
+  if (currentIndex < questions.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function showResult() {
+  quizScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
+  resultScore.textContent = `${score} / ${questions.length}`;
+
+  const percent = (score / questions.length) * 100;
+  if (percent >= 80) {
+    resultMsg.textContent = "Excellent work! You know your stuff.";
+  } else if (percent >= 50) {
+    resultMsg.textContent = "Good effort! Keep learning.";
+  } else {
+    resultMsg.textContent = "Keep practicing, you'll get there.";
+  }
+}
+
+restartBtn.addEventListener("click", () => {
+  currentIndex = 0;
+  score = 0;
+  quizScreen.classList.remove("hidden");
+  resultScreen.classList.add("hidden");
+  loadQuestion();
+});
+
+loadQuestion();
+</script>
+</body>
+</html>
